@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 
 const Like = (props) => {
+  const { liked, onLikedToggle } = props;
   let classes = "float-right fa fa-heart";
-  if (!props.liked) classes += "-o";
+  if (!liked) classes += "-o";
   return (
     <i
       className={classes}
       aria-hidden="true"
-      onClick={props.onLikedToggle}
+      onClick={onLikedToggle}
       style={{ cursor: "pointer" }}
     ></i>
   );

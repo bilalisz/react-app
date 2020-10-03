@@ -4,9 +4,11 @@ import "./App.css";
 
 function App() {
   return (
-    <main className="container">
-      <Moive />
-    </main>
+    <React.Fragment>
+      <main className="container">
+        <Moive />
+      </main>
+    </React.Fragment>
   );
 }
 
