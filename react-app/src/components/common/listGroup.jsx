@@ -1,12 +1,6 @@
 import React from "react";
 const ListGroup = (props) => {
-  const {
-    items,
-    textProperty,
-    valueProperty,
-    onItemSelect,
-    selectedItem,
-  } = props;
+  const { items, textProperty, onItemSelect, selectedItem } = props;
   return (
     <ul className="list-group mt-5 shadow text-center">
       <li className="list-group-item bg-secondary text-white font-weight-bold display-5">

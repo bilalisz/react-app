@@ -59,8 +59,6 @@ export default class Moive extends Component {
   };
 
   handelerGenreSelect = (genre) => {
-    console.log(genre);
-
     this.setState({
       selectedGenre: genre,
       currentPage: 1,
@@ -68,17 +66,9 @@ export default class Moive extends Component {
   };
 
   handlerSorting = (path) => {
-    const sortColumn = { ...this.state.sortColumn };
-    if (sortColumn.path === path)
-      sortColumn.order = sortColumn.order === "asc" ? "desc" : "asc";
-    else {
-      sortColumn.path = path;
-      sortColumn.order = "asc";
-    }
     this.setState({
-      sortColumn,
+      sortColumn: path,
     });
-    console.log(sortColumn);
   };
 
   render() {

@@ -1,34 +1,41 @@
 import React, { Component } from "react";
+import { Route } from "react-router-dom";
 class TableHeader extends Component {
+  raiseSort = (path) => {
+    const sortColumn = { ...this.props.sortColumn };
+    if (sortColumn.path === path)
+      sortColumn.order = sortColumn.order === "asc" ? "desc" : "asc";
+    else {
+      sortColumn.path = path;
+      sortColumn.order = "asc";
+    }
+    this.props.onSort(sortColumn);
+  };
+
+  renderSortIcon = (column) => {
+    const { sortColumn } = this.props;
+
+    if (column.path !== sortColumn.path) return null;
+    if (sortColumn.order === "asc") return <i className="fa fa-sort-asc" />;
+    return <i className="fa fa-sort-desc" />;
+  };
+
   render() {
-    const { onSort, onDeleteAll, movies } = this.props;
     return (
-      <thead>
-        <tr className="bg-dark text-white">
-          <th scope="col">#</th>
-          <th onClick={() => onSort("title")} scope="col">
-            Title
-          </th>
-          <th onClick={() => onSort("genre.name")} scope="col">
-            Genre
-          </th>
-          <th onClick={() => onSort("numberInStock")} scope="col">
-            Stock
-          </th>
-          <th onClick={() => onSort("dailyRentalRate")} scope="col">
-            Rate
-          </th>
-          <th scope="col">Like</th>
-          <th scope="col">
-            <button
-              onClick={() => onDeleteAll(movies)}
-              type="button"
-              className="btn btn-danger btn-sm"
-              style={{ float: "right" }}
+      <thead
+        className="thead-dark bg-dark text-white font-weight-bold "
+        style={{ cursor: "pointer" }}
+      >
+        <tr>
+          {this.props.columns.map((column) => (
+            <td
+              key={column.path || column.key}
+              onClick={() => this.raiseSort(column.path)}
             >
-              Delete all
-            </button>
-          </th>
+              {/* {this.renderSortIcon(column)} */}
+              {column.label || column.contentDelAll}
+            </td>
+          ))}
         </tr>
       </thead>
     );
